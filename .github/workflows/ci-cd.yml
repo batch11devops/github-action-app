@@ -1,13 +1,11 @@
 name: Simple CI Demo
 
-# Trigger workflow on push to main branch or manual run
 on:
   push:
     branches:
       - main
-  workflow_dispatch:  # manual trigger
+  workflow_dispatch:
 
-# Environment variables (non-sensitive)
 env:
   APP_NAME: my-app
   NODE_ENV: development
@@ -17,25 +15,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Step 2: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 3: Run tests
       - name: Run tests
         run: npm test
 
-      # Step 4: Build project
       - name: Build project
         run: npm run build
 
-      # Step 5: Upload build artifact
       - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-dist
           path: dist/
